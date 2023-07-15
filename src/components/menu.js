@@ -8,6 +8,7 @@ import SubscriptionsOutlinedIcon from "@mui/icons-material/SubscriptionsOutlined
 import VideoLibraryOutlinedIcon from "@mui/icons-material/VideoLibraryOutlined";
 import HistoryOutlinedIcon from "@mui/icons-material/HistoryOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import { Link, NavLink } from "react-router-dom";
 
 const Container = styled.div`
   flex: 1;
@@ -18,6 +19,7 @@ const Container = styled.div`
   height: 100vh;
   position: sticky;
   top: 0;
+  box-sizing: border-box;
 `;
 const Wrapper = styled.div`
   // padding: 10px 20px;
@@ -40,6 +42,10 @@ const Item = styled.div`
   gap: 20px;
   cursor: pointer;
   padding: 5px 5px;
+
+  &:hover {
+    background-color: #373737;
+  }
 `;
 
 const Hr = styled.hr`
@@ -66,10 +72,12 @@ const Button = styled.button`
 const Menu = () => {
   return (
     <Container>
-      <Logo>
-        <Img src={logo}></Img>
-        DevTube
-      </Logo>
+      <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+        <Logo>
+          <Img src={logo}></Img>
+          DevTube
+        </Logo>
+      </Link>
       <Wrapper>
         <Item>
           <HomeIcon />
@@ -95,10 +103,12 @@ const Menu = () => {
         <Hr />
         <Login>
           Sign in to like videos, comment and subscribe
-          <Button>
-            <AccountCircleOutlinedIcon />
-            SIGN IN
-          </Button>
+          <Link to="signin" style={{ textDecoration: "none" }}>
+            <Button>
+              <AccountCircleOutlinedIcon />
+              SIGN IN
+            </Button>
+          </Link>
         </Login>
         <Hr />
         <Item>

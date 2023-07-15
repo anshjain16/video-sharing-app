@@ -1,32 +1,43 @@
 import React from "react";
 import { styled } from "styled-components";
 import thumbnail from "../images/thumbnail2.png";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
-  width: 360px;
-  height: 360px;
+  width: ${(props) => props.type !== "sm" && "360px"};
+  height: ${(props) => (props.type === "sm" ? "120px" : "360px")};
+  display: ${(props) => props.type === "sm" && "flex"};
+  margin-bottom: ${(props) => props.type === "sm" && "20px"};
+  padding-top: ${(props) => props.type === "sm" && "0px"};
+  gap: 15px;
+  &:hover {
+    background-color: #373737;
+  }
 `;
 
 const Img = styled.img`
-  width: 360px;
-  height: 202px;
+  width: 100%;
+  height: ${(props) => (props.type === "sm" ? "120px" : "202px")};
   background-color: #565656;
   cursor: pointer;
+  flex: 1;
 `;
 
 const Details = styled.div`
+  flex: 1;
   display: flex;
   /* align-items: center; */
   gap: 10px;
   /* margin-top: 1px; */
 `;
 
-const ChannelImage = styled.div`
+const ChannelImage = styled.img`
   width: 36px;
   height: 36px;
   border-radius: 50%;
   background-color: #303030;
   margin-top: 5px;
+  display: ${(props) => props.type === "sm" && "none"};
 `;
 
 const Texts = styled.div`
@@ -52,19 +63,26 @@ const Info = styled.div`
   color: #aaaaaa;
 `;
 
-const Card = () => {
+const Card = ({ type }) => {
   return (
-    <Container>
-      <Img src={thumbnail}></Img>
-      <Details>
-        <ChannelImage />
-        <Texts>
-          <Title>Video Title</Title>
-          <ChannelName>DevTube</ChannelName>
-          <Info>670,684 views | 2 days ago</Info>
-        </Texts>
-      </Details>
-    </Container>
+    <Link to="/video/test" style={{ textDecoration: "none" }} type={type}>
+      <Container type={type}>
+        <Img src={thumbnail} type={type}>
+          {console.log(type)}
+        </Img>
+        <Details type={type}>
+          <ChannelImage
+            src="https://picfiles.alphacoders.com/410/thumb-410307.jpg"
+            type={type}
+          />
+          <Texts type={type}>
+            <Title>Video Title</Title>
+            <ChannelName>DevTube</ChannelName>
+            <Info>670,684 views | 2 days ago</Info>
+          </Texts>
+        </Details>
+      </Container>
+    </Link>
   );
 };
 
