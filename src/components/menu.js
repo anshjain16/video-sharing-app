@@ -8,6 +8,16 @@ import SubscriptionsOutlinedIcon from "@mui/icons-material/SubscriptionsOutlined
 import VideoLibraryOutlinedIcon from "@mui/icons-material/VideoLibraryOutlined";
 import HistoryOutlinedIcon from "@mui/icons-material/HistoryOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import PlayCircleOutlinedIcon from "@mui/icons-material/PlayCircleOutlined";
+import SportsSoccerOutlinedIcon from "@mui/icons-material/SportsSoccerOutlined";
+import SportsEsportsOutlinedIcon from "@mui/icons-material/SportsEsportsOutlined";
+import HdOutlinedIcon from "@mui/icons-material/HdOutlined";
+import NewspaperOutlinedIcon from "@mui/icons-material/NewspaperOutlined";
+import LiveTvOutlinedIcon from "@mui/icons-material/LiveTvOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
+import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
+
 import { Link, NavLink } from "react-router-dom";
 
 const Container = styled.div`
@@ -112,40 +122,40 @@ const Menu = () => {
         </Login>
         <Hr />
         <Item>
-          <ExploreIcon />
+          <PlayCircleOutlinedIcon />
           Music
         </Item>
         <Item>
-          <ExploreIcon />
+          <SportsSoccerOutlinedIcon />
           Sports
         </Item>
         <Item>
-          <ExploreIcon />
+          <SportsEsportsOutlinedIcon />
           Gaming
         </Item>
         <Item>
-          <ExploreIcon />
+          <HdOutlinedIcon />
           Movies
         </Item>
         <Item>
-          <ExploreIcon />
+          <NewspaperOutlinedIcon />
           News
         </Item>
         <Item>
-          <ExploreIcon />
+          <LiveTvOutlinedIcon />
           Live
         </Item>
         <Hr />
         <Item>
-          <ExploreIcon />
+          <SettingsOutlinedIcon />
           Settings
         </Item>
         <Item>
-          <ExploreIcon />
+          <FlagOutlinedIcon />
           Report
         </Item>
         <Item>
-          <ExploreIcon />
+          <HelpOutlineOutlinedIcon />
           Help
         </Item>
       </Wrapper>
