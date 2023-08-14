@@ -1,8 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
-import logo from "../images/youtube-logo-featured.jpg";
+import logo from "../../assets/images/youtube-logo-featured.jpg";
 import HomeIcon from "@mui/icons-material/Home";
-import ExploreIcon from "@mui/icons-material/Explore";
 import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
 import SubscriptionsOutlinedIcon from "@mui/icons-material/SubscriptionsOutlined";
 import VideoLibraryOutlinedIcon from "@mui/icons-material/VideoLibraryOutlined";
@@ -18,7 +17,7 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 
-import { Link, NavLink } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 const Container = styled.div`
   flex: 1;
@@ -89,10 +88,13 @@ const Menu = () => {
         </Logo>
       </Link>
       <Wrapper>
+      <Link to="/" style={{ textDecoration: "none", color: "white" }}>
         <Item>
-          <HomeIcon />
-          Home
+            <HomeIcon />
+            Home
         </Item>
+      </Link>
+       
         <Item>
           <ExploreOutlinedIcon />
           Explore

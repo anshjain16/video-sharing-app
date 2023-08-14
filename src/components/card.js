@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
-import thumbnail from "../images/thumbnail2.png";
+import thumbnail from "../assets/images/thumbnail2.png";
 import { Link } from "react-router-dom";
 
 const Container = styled.div`

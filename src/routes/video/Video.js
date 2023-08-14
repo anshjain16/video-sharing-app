@@ -4,8 +4,8 @@ import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownAltOutlinedIcon from "@mui/icons-material/ThumbDownAltOutlined";
 import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
 import LibraryAddOutlinedIcon from "@mui/icons-material/LibraryAddOutlined";
-import Comments from "../components/comments";
-import Recommendation from "../components/recommendation";
+import Comments from "../../components/comments/comments";
+import Recommendation from "../../components/recommendation";
 
 const Container = styled.div`
   color: white;
@@ -101,7 +101,7 @@ const Video = () => {
           <iframe
             width="100%"
             height="500"
-            src="https://www.youtube.com/embed/LkvAjalYnWw"
+            src="https://www.youtube.com/embed/aRGdDy18qfY"
             title="Unforgettable"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
