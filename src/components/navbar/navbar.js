@@ -2,7 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import VideoCallOutlinedIcon from "@mui/icons-material/VideoCallOutlined";
 import { Link } from "react-router-dom";
+import { Menu, MenuItem, Tooltip } from "@mui/material";
+import Fade from "@mui/material/Fade";
+import { useState } from "react";
 
 const Container = styled.div`
   position: sticky;
@@ -49,14 +53,43 @@ const Button = styled.button`
   gap: 5px;
 `;
 
-const navbar = () => {
+const Navbar = ({setUploadModal}) => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleCreateMenuClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <Container>
       <Wrapper>
         <Search>
-          <Input placeholder="seacrh"></Input>
+          <Input placeholder="search"></Input>
           <SearchOutlinedIcon />
         </Search>
+        <Button
+          onClick={(event) => {
+            setAnchorEl(event.currentTarget);
+            console.log(event.currentTarget);
+          }}
+          style={{ marginRight: "1rem" }}
+        >
+          <Tooltip title="Create">
+            <VideoCallOutlinedIcon />
+          </Tooltip>
+        </Button>
+        <Menu
+          id="fade-menu"
+          MenuListProps={{
+            "aria-labelledby": "fade-button",
+          }}
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleCreateMenuClose}
+          TransitionComponent={Fade}
+        >
+          <MenuItem onClick={()=>{setUploadModal(true);}}>Upload Video</MenuItem>
+          <MenuItem onClick={handleCreateMenuClose}>Live Stream</MenuItem>
+        </Menu>
         <Link to="signin" style={{ textDecoration: "none" }}>
           <Button>
             <AccountCircleOutlinedIcon />
@@ -68,4 +101,4 @@ const navbar = () => {
   );
 };
 
-export default navbar;
+export default Navbar;
