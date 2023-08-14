@@ -1,11 +1,12 @@
-import logo from "./logo.svg";
+
 import styled from "styled-components";
-import Menu from "./components/menu";
-import Navbar from "./components/navbar";
+import Menu from "./components/sidebar/menu";
+import Navbar from "./components/navbar/navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Video from "./pages/Video";
-import Home from "./pages/Home";
-import SignIn from "./components/SignIn";
+import Video from "./routes/video/Video";
+import Home from "./routes/Home/Home";
+import SignIn from "./routes/auth/SignIn";
+
 
 const Container = styled.div`
   display: flex;
@@ -30,10 +31,10 @@ function App() {
           <Wrapper>
             <Routes>
               <Route path="/">
-                <Route index element={<Home />} />
-                <Route path="signin" element={<SignIn />} />
+                <Route index element={<Home/>} />
+                <Route path="signin" element={<SignIn/>} />
                 <Route path="video">
-                  <Route path=":id" element={<Video />}></Route>
+                  <Route path=":id" element={<Video/>}></Route>
                 </Route>
               </Route>
             </Routes>

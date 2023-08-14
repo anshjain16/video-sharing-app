@@ -44,7 +44,7 @@ const Button = styled.button`
   padding: 10px 20px;
   cursor: pointer;
 `;
-const More = styled.div``;
+// const More = styled.div``;
 
 const SignIn = () => {
   return (
