@@ -93,7 +93,8 @@ const ChannelDescription = styled.p`
   color: #aaaaaa;
 `;
 
-const Video = () => {
+const Video = ({videoUrl}) => {
+  videoUrl = "https://my-first-bucket-by-srajan.s3.ap-south-1.amazonaws.com//uploads/yt-clone/Recording%20%2320.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAY7AWQ2JZQYCBR5MW%2F20230815%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20230815T080015Z&X-Amz-Expires=900&X-Amz-Signature=964582f7da9b78fdaf2bf7fb2c35c25690ccefc4847a9aa65fa9feae5b0ff6b4&X-Amz-SignedHeaders=host&x-id=GetObject"
   return (
     <Container>
       <Content>
@@ -101,7 +102,7 @@ const Video = () => {
           <iframe
             width="100%"
             height="500"
-            src="https://www.youtube.com/embed/aRGdDy18qfY"
+            src={videoUrl}
             title="Unforgettable"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

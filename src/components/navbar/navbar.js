@@ -69,7 +69,6 @@ const Navbar = ({setUploadModal}) => {
         <Button
           onClick={(event) => {
             setAnchorEl(event.currentTarget);
-            console.log(event.currentTarget);
           }}
           style={{ marginRight: "1rem" }}
         >
@@ -87,7 +86,7 @@ const Navbar = ({setUploadModal}) => {
           onClose={handleCreateMenuClose}
           TransitionComponent={Fade}
         >
-          <MenuItem onClick={()=>{setUploadModal(true);}}>Upload Video</MenuItem>
+          <MenuItem onClick={()=>{setUploadModal(true); handleCreateMenuClose(); }}>Upload Video</MenuItem>
           <MenuItem onClick={handleCreateMenuClose}>Live Stream</MenuItem>
         </Menu>
         <Link to="signin" style={{ textDecoration: "none" }}>

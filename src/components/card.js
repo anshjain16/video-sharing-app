@@ -68,7 +68,7 @@ const Card = ({ type }) => {
     <Link to="/video/test" style={{ textDecoration: "none" }} type={type}>
       <Container type={type}>
         <Img src={thumbnail} type={type}>
-          {console.log(type)}
+         
         </Img>
         <Details type={type}>
           <ChannelImage

@@ -51,7 +51,7 @@ const SignIn = () => {
     <Container>
       <Wrapper>
         <Title>SignIn</Title>
-        <SubTitle>to DevTube</SubTitle>
+        <SubTitle>To DevTube</SubTitle>
         <Input placeholder="username" />
         <Input type="password" placeholder="password" />
         <Button>Sign In</Button>
