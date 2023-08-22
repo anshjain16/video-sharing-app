@@ -21,7 +21,7 @@ function UploadVideo({ setUploadModal }) {
       }
     );
     const response = await res.json();
-    console.log(response.url);
+    // console.log(response.url);
     return response.url;
   };
   const uploadFile = async (file) => {

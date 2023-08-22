@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Video from "./routes/video/Video";
 import Home from "./routes/Home/Home";
 import SignIn from "./routes/auth/SignIn";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {Modal} from 'antd'
 import UploadVideo from "./components/uploadVideo/UploadVideo";
 
@@ -53,7 +53,7 @@ function App() {
           <Wrapper>
             <Routes>
               <Route path="/">
-                <Route index element={<Home/>} />
+                <Route index element={<Home uploadModal={uploadModal}/>} />
                 <Route path="signin" element={<SignIn/>} />
                 <Route path="video">
                   <Route path=":id" element={<Video/>}></Route>
