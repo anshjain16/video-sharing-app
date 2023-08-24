@@ -63,12 +63,13 @@ const Info = styled.div`
   color: #aaaaaa;
 `;
 
-const Card = ({ type }) => {
+const Card = ({ type,title,description,videoId }) => {
+  const path = `/video/${videoId}`
   return (
-    <Link to="/video/test" style={{ textDecoration: "none" }} type={type}>
+    <Link to={path} style={{ textDecoration: "none" }} type={type}>
       <Container type={type}>
         <Img src={thumbnail} type={type}>
-          {console.log(type)}
+         
         </Img>
         <Details type={type}>
           <ChannelImage
@@ -76,7 +77,7 @@ const Card = ({ type }) => {
             type={type}
           />
           <Texts type={type}>
-            <Title>Video Title</Title>
+            <Title>{title}</Title>
             <ChannelName>DevTube</ChannelName>
             <Info>670,684 views | 2 days ago</Info>
           </Texts>

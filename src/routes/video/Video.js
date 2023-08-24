@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { styled } from "styled-components";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownAltOutlinedIcon from "@mui/icons-material/ThumbDownAltOutlined";
@@ -6,6 +6,9 @@ import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
 import LibraryAddOutlinedIcon from "@mui/icons-material/LibraryAddOutlined";
 import Comments from "../../components/comments/comments";
 import Recommendation from "../../components/recommendation";
+import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { Spin } from "antd";
 
 const Container = styled.div`
   color: white;
@@ -94,19 +97,48 @@ const ChannelDescription = styled.p`
 `;
 
 const Video = () => {
+  const id = useParams();
+  const [videoDetails,setVideoDetails] = useState();
+  const [videoUrl,setVideoUrl] = useState(null);
+  // console.log('Video id',id);
+  const getVideoData = async(id)=>{
+    const res = await fetch(`https://vcw29hcgll.execute-api.ap-south-1.amazonaws.com/videos/${id.id}`);
+    const response = await res.json();
+    // console.log(response);
+    const data = response.data.Item;
+    console.log(data);
+    setVideoDetails(data);
+  }
+  const getVideoUrl = async(id)=>{
+    const res = await fetch('https://vcw29hcgll.execute-api.ap-south-1.amazonaws.com/S3view',{
+      method: 'Post',
+      body: JSON.stringify({
+        filename: id.id
+      })
+    })
+    const response = await res.json();
+    // console.log(response);
+    setVideoUrl(response.url)
+  }
+  useEffect(()=>{
+    getVideoUrl(id);
+    getVideoData(id);
+  },[id])
   return (
     <Container>
       <Content>
         <VideoWrapper>
-          <iframe
+         {
+            (videoUrl) ? <iframe
             width="100%"
             height="500"
-            src="https://www.youtube.com/embed/aRGdDy18qfY"
+            src={videoUrl}
             title="Unforgettable"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
-          ></iframe>
+          ></iframe> : <Spin/>
+         } 
           <Title>Test Video</Title>
           <Details>
             <Info>470,000 views | 18 feb 2023</Info>
@@ -136,9 +168,7 @@ const Video = () => {
               <ChannelName>DevTube</ChannelName>
               <ChannelCounter>200k Subscribers</ChannelCounter>
               <ChannelDescription>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Laudantium eos, quis fuga nisi, repudiandae obcaecati deserunt
-                libero ad.
+              {videoDetails?.description}
               </ChannelDescription>
             </ChannelDetail>
           </ChannelInfo>
