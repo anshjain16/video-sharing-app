@@ -33,6 +33,7 @@ function App() {
         <Menu />
         <Main>
           <Navbar setUploadModal={setUploadModal}></Navbar>
+        {(uploadModal) &&
           <Modal
           open={uploadModal}
           onCancel={()=>{setUploadModal(false)}}
@@ -42,6 +43,7 @@ function App() {
       >
         <UploadVideo setUploadModal={setUploadModal}/>
       </Modal>
+        }
           {/* <Modal
           open={uploadModal}
           onCancel={()=>{setUploadModal(false)}}
@@ -53,7 +55,7 @@ function App() {
           <Wrapper>
             <Routes>
               <Route path="/">
-                <Route index element={<Home uploadModal={uploadModal}/>} />
+                <Route index element={<Home key={uploadModal} />} />
                 <Route path="signin" element={<SignIn/>} />
                 <Route path="video">
                   <Route path=":id" element={<Video/>}></Route>

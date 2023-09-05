@@ -3,10 +3,12 @@ import UploadOutlinedIcon from "@mui/icons-material/UploadOutlined";
 import { Button, Input } from "antd";
 import { useState } from "react";
 import {v4 as uuidv4} from 'uuid' 
+import { Spin } from "antd";
 function UploadVideo({ setUploadModal }) {
   const [file, setFile] = useState(null);
   const [title,setTitle] = useState(null);
   const [description,setDescription] = useState(null);
+  const [loading,setLoading] = useState(false);
   const getUploadUrl = async (file) => {
     const res = await fetch(
       "https://vcw29hcgll.execute-api.ap-south-1.amazonaws.com/S3upload",
@@ -27,18 +29,21 @@ function UploadVideo({ setUploadModal }) {
   const uploadFile = async (file) => {
     const uploadUrl = await getUploadUrl(file);
     console.log(uploadUrl);
+    
     await fetch(uploadUrl, {
       method: "PUT",
       body: file,
     });
   };
-  const handleVideoUpload = () => {
+  const handleVideoUpload = async() => {
     const filename = uuidv4();
+    setLoading(true);
     const fileToUpload = new File([file], filename, { type: file.type });
-    uploadFile(fileToUpload);
+    await uploadFile(fileToUpload);
     setUploadModal(false);
   };
   return (
+    (loading) ? <Spin /> :
     <div className="upload-modal">
       <h2 id="upload-modal-title">Upload Video</h2>
       <div className="upload-content">
@@ -47,7 +52,6 @@ function UploadVideo({ setUploadModal }) {
         <Input onChange={(event)=>{
           setTitle(event.target.value);
         }}/>
-
         <p>Select Video</p>
         <input
           type="file"
