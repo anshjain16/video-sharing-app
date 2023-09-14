@@ -27,17 +27,36 @@ function UploadVideo({ setUploadModal }) {
     return response.url;
   };
   const uploadFile = async (file) => {
-    const uploadUrl = await getUploadUrl(file);
+    const uploadUrl = "http://localhost:3002/transcode";
     console.log(uploadUrl);
-    
-    await fetch(uploadUrl, {
-      method: "PUT",
-      body: file,
+    const formData = new FormData();
+    formData.append('video',file);
+    const res = await fetch(uploadUrl, {
+      method: "POST",
+      body: formData,
     });
+    const response = res.json();
+    console.log(res);
+    console.log(response);
+    if(res.status === 200) {
+      await fetch(
+        "https://vcw29hcgll.execute-api.ap-south-1.amazonaws.com/S3upload",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            filename: file.name,
+            contentType: file.type,
+            title: title,
+            description: description
+          }),
+        }
+      )
+    }
   };
   const handleVideoUpload = async() => {
     const filename = uuidv4();
     setLoading(true);
+    console.log("file is",file);
     const fileToUpload = new File([file], filename, { type: file.type });
     await uploadFile(fileToUpload);
     setUploadModal(false);
