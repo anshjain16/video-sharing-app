@@ -14,7 +14,7 @@ const Home = () => {
   const [videos,setVideos] = useState([]);
 
   useEffect(()=>{
-  //  getVideos(); 
+   getVideos(); 
   },[])
   const getVideos = async()=>{
     const res = await fetch('https://vcw29hcgll.execute-api.ap-south-1.amazonaws.com/videos');

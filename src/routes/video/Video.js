@@ -99,7 +99,12 @@ const ChannelDescription = styled.p`
 const Video = () => {
   const id = useParams();
   const [videoDetails,setVideoDetails] = useState();
-  const [videoUrl,setVideoUrl] = useState(null);
+  const [videoUrl,setVideoUrl] = useState({
+    url_360: null,
+    url_480: null,
+    url_720: null
+  });
+  const [url,setUrl] = useState(null);
   // console.log('Video id',id);
   const getVideoData = async(id)=>{
     const res = await fetch(`https://vcw29hcgll.execute-api.ap-south-1.amazonaws.com/videos/${id.id}`);
@@ -118,7 +123,11 @@ const Video = () => {
     })
     const response = await res.json();
     // console.log(response);
-    setVideoUrl(response.url)
+    setVideoUrl({
+      url_360: response.url_360,
+      url_480: response.url_480,
+      url_720: response.url_720
+    })
   }
   useEffect(()=>{
     getVideoUrl(id);
@@ -129,15 +138,28 @@ const Video = () => {
       <Content>
         <VideoWrapper>
          {
-            (videoUrl) ? <iframe
-            width="100%"
-            height="500"
-            src={videoUrl}
-            title="Unforgettable"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe> : <Spin/>
+            (videoUrl) ? <>
+            <div class='vidcontainer'>
+              <select class='qualitypick' autocomplete='off' onChange={(e)=>{
+                if(e.target.value === "720"){
+                  setUrl(videoUrl.url_720);
+                }
+                if(e.target.value === "480"){
+                  setUrl(videoUrl.url_480);
+                }
+                if(e.target.value === "360"){
+                  setUrl(videoUrl.url_360);
+                }
+              }}>
+                  <option value="720" selected>720</option>
+                  <option value = "480">480p</option>
+                  <option value="360">360p</option>
+              </select>
+              <video controls preload src={url}>
+                
+              </video>
+            </div>
+            </> : <Spin/>
          } 
           <Title>Test Video</Title>
           <Details>
